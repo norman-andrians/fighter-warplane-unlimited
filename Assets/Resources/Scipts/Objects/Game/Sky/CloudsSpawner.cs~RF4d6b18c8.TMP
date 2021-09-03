@@ -12,7 +12,8 @@ public class CloudsSpawner : MonoBehaviour
     // delay munculkan awan
     public float delay = 20f;
 
-    public bool debugTest = false;
+    // atur waktu
+    private float time;
 
     // Start is called before the first frame update
     void Start()
@@ -27,45 +28,29 @@ public class CloudsSpawner : MonoBehaviour
 
         awan1.transform.parent = gameObject.transform;
         awan2.transform.parent = gameObject.transform;
-
-        // memulai memunculkan awan
-        StartCoroutine(munculkanAwan());
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        // untuk test
-        if (debugTest)
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-                membuatAwan();
-        }
+        // menjalankan waktu
+        time += Time.deltaTime;
+
+        InvokeRepeating("munculkanAwan", 3, 4);
     }
 
-    // function untuk membuat awan
-    private void membuatAwan()
+    // function untuk memunculkan awan
+    private void munculkanAwan()
     {
         int seedIndex = Random.Range(0, awan.Length);
 
         float posx = Random.Range(transform.position.x - 10f, transform.position.x + 10f);
         float posy = Random.Range(transform.position.y - 10f, transform.position.y + 10f);
+
         Vector2 posisiAwan = new Vector2(posx, posy);
 
-        var awanBiasa = Instantiate(awan[seedIndex], posisiAwan, Quaternion.identity);
-
-        awanBiasa.transform.parent = gameObject.transform;
+        Instantiate(awan[seedIndex], posisiAwan, Quaternion.identity);
 
         Debug.Log("munculkan awan");
-    }
-
-    // function untuk memunculkan awan
-    private IEnumerator munculkanAwan()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(delay);
-            membuatAwan();
-        }
     }
 }

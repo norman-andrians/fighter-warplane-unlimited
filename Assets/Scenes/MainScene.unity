@@ -525,7 +525,8 @@ MonoBehaviour:
   - {fileID: 9098183560771483294, guid: 01fab4ae94e8c5b4b920502a830bc0de, type: 3}
   - {fileID: 1876410170342559289, guid: 9ae8c3340f23763409a2c04a3768b3b7, type: 3}
   - {fileID: 9011254697973590752, guid: 5c190a3106a122a4a8ba4b2cac301b4b, type: 3}
-  delay: 3
+  delay: 0.6
+  debugTest: 0
 --- !u!1 &833931915
 GameObject:
   m_ObjectHideFlags: 0
